@@ -1,14 +1,16 @@
-const ciudades= new Array("Sucre", "La Paz", "Santa Cruz");
+const ciudades = ["Sucre", "La Paz", "Santa Cruz"];
+const paises = ["Bolivia", "Ecuador", "Brazil", "Venezuela"];
 
-//definir un arrat abreviado
-const paises =("Bolivia", "Ecuador", "Brazil", "Venezuela");
 let conteoCiudades = ciudades.length;
-console.log(`el conteo total de las ciudades ${conteoCiudades}`);
-//ejercicio con array
-ciudades.shift();//elimina mi primer elemento
-console.log(ciudades);
-ciudades.pop();//elimina el ultimo elememto
+console.log(`El conteo total de las ciudades: ${conteoCiudades}`);
+
+// Eliminar elementos
+ciudades.shift(); // elimina el primer elemento
 console.log(ciudades);
 
-console.log(paises.join("-")); //unifica los elemenots de una cadena de caracteres 
-console.log(paises.sort())
+ciudades.pop(); // elimina el último elemento
+console.log(ciudades);
+
+// Trabajar con array de países
+console.log(paises.join("-")); // unifica los elementos con "-"
+console.log(paises.sort());     // ordena alfabéticamente

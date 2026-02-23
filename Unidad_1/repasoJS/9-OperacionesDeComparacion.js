@@ -1,19 +1,18 @@
-const valorPasaje=1000
-if(valorPasaje == 1000)
-{
-    console.log(`el pasaje es correcto`);
+const valorPasaje = 1000;
+if(valorPasaje === 1000){
+    console.log(`El pasaje es correcto`);
 }
-const paisDestino="Ecuador";
-const paisesDisponibles = ["Bolvia","ecuador","brasil","vanezuela","italia","francia"];
 
-let edadPasajero=17;
-let acompaniado=true;
+const paisDestino = "Ecuador";
+const paisesDisponibles = ["Bolivia","Ecuador","Brasil","Venezuela","Italia","Francia"];
 
-console.log(`pasajes para ${paisesDisponibles}`);
-if((paisesDisponibles.indexOf(paisDestino)> -1 && (edadPasajero >=18 || acompaniado)))
-{
-    console.log("pasaje disponible para venta");
-}else
-{
-    console.log("no se puede vender el pasaje");
+let edadPasajero = 17;
+let acompaniado = true;
+
+console.log(`Pasajes para: ${paisesDisponibles.join(", ")}`);
+
+if(paisesDisponibles.some(p => p.toLowerCase() === paisDestino.toLowerCase()) && (edadPasajero >= 18 || acompaniado)) {
+    console.log("Pasaje disponible para venta");
+} else {
+    console.log("No se puede vender el pasaje");
 }
