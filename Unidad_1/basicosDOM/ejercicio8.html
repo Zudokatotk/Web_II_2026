@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>USO DE STYLE</title>
+</head>
+<body>
+    <p>uno</p>
+    <p>dos</p>
+    <p>tres</p>
+    <p>cuatro</p>
+
+    <script>
+        let parrafos = document.querySelectorAll("p");
+        parrafos.forEach(function(p, index) {
+            p.style.color = "white";
+            p.style.backgroundColor = "blue";
+            p.style.fontSize = "20px";
+            p.style.padding = "10px";
+            if(index % 2 == 0){
+                p.style.backgroundColor = "green";
+            }
+        });
+    </script>
+</body>
+</html>

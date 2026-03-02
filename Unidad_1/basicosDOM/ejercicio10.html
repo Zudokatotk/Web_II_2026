@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="contenedor">contenedor inicial</div> 
+    <button id="boton">agregar elemento</button>
+    <script>
+        const nuevo_elemento = document.createElement('div')//para crear e;e,emtps html
+        nuevo_elemento.textContent='elemento creado con dom'
+        const contenedor = document.getElementById('contenedor')
+        contenedor.appendChild(nuevo_elemento)//agrega el nuevo hijo
+        console.log(contenedor1)
+    </script>
+</body>
+</html>

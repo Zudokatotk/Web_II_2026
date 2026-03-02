@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="padre">Elemento Padre
+        <div id="hijo">Elmento Hijo</div>
+    </div>
+    <script>
+        const elementoHijo=document.getElementById('hijo')
+        elementoHijo.addEventListener('click', (evento)=>{
+            evento.stopPropagation()
+            alert('evento hijo')
+        })
+        const elementoPadre=document.getElementById('padre')
+    </script>
+</body>
+</html>

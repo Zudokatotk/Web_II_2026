@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJERCICIO 13 PREVENTDEFAULT</title>
+</head>
+<body>
+    <div id="enlace" href="https://www.google.com/">ENLACE</div>
+    <script>
+        const enlace=document.getElementById('enlace')
+        enlace.addEventListener('click',(e)=>{
+            e.preventDefault()
+            alert('no se redirecciona a la pagina')
+        })
+    </script>
+</body>
+</html>

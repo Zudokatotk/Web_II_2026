@@ -10,7 +10,7 @@ function contarParesImpares(array) {
 
   return resultado;
 }
-console.log("Funcion Tradicional")
+console.log("Funcion Tradicional");
 console.log(contarParesImpares(numeros1));
 
 // Función flecha
@@ -23,5 +23,5 @@ const contarParesImparesArrow = (array) => {
 
   return resultado;
 };
-console.log("Funcion Flecha")
+console.log("Funcion Flecha");
 console.log(contarParesImparesArrow(numeros1));
