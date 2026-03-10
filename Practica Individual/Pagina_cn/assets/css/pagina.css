@@ -1,0 +1,137 @@
+.pagina{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 9rem 1rem 2rem;
+    min-height: 35vh;
+    max-height: 40vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pagina::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(129, 33, 33, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(15, 52, 96, 0.4) 0%, transparent 50%);
+    z-index: 0;
+}
+
+.pagina > * {
+    position: relative;
+    z-index: 1;
+}
+
+.pagina__titulo{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    letter-spacing: 2px;
+}
+
+.pagina__desc{
+    font-family: 'Montserrat',sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0 auto 2.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.pagina__boton{
+    font-family: 'Montserrat',sans-serif;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    width: 80%;
+    max-width: 300px;
+    padding: 1.2rem 2.5rem;
+    background: linear-gradient(135deg, #c92a2a 0%, #812121 100%);
+    border: none;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    display: inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(129, 33, 33, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.pagina__boton::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.pagina__boton:hover::before{
+    left: 100%;
+}
+
+.pagina__boton:hover{
+    background: linear-gradient(135deg, #e63946 0%, #c92a2a 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(129, 33, 33, 0.6);
+}
+
+.pagina__boton:active{
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(129, 33, 33, 0.5);
+}
+
+/* Tablet */
+@media screen and (min-width: 768px){
+    .pagina{
+        padding: 7rem 2rem 2.5rem;
+        min-height: 38vh;
+        max-height: 45vh;
+    }
+    
+    .pagina__titulo{
+        font-size: 3rem;
+    }
+    
+    .pagina__desc{
+        font-size: 1.2rem;
+    }
+    
+    .pagina__boton{
+        width: 50%;
+    }
+}
+
+/* Desktop */
+@media screen and (min-width: 1024px){
+    .pagina{
+        background-image: linear-gradient(135deg, rgba(26, 26, 46, 0.85) 0%, rgba(22, 33, 62, 0.85) 50%, rgba(15, 52, 96, 0.85) 100%), 
+                          url('../img/port1.jpg');
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: multiply;
+        padding: 8rem 2rem 3rem;
+        min-height: 40vh;
+        max-height: 50vh;
+    }
+    
+    .pagina__titulo{
+        font-size: 3.5rem;
+    }
+}
