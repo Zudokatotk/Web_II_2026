@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "task": "Clases",
+      "description": "matematicas",
+      "date": "2026-05-02",
+      "priority": "Alta",
+      "category": "Academico",
+      "responsable": "Angela Castro",
+      "location": "Universidad Privada del Valle",
+      "completed": false,
+      "id": "lGkKeQSm0hs"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

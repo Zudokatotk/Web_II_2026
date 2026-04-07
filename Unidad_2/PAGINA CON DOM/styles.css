@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@keyframes bgPulse {
+    0%   { background-color: #0a0a0a; }
+    33%  { background-color: #0d0020; }
+    66%  { background-color: #001a0d; }
+    100% { background-color: #0a0a0a; }
+}
+
+@keyframes titleGlitch {
+    0%   { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; transform: skewX(0deg); }
+    20%  { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; transform: skewX(-3deg); }
+    40%  { text-shadow: 2px 0 #ff0000, -2px 0 #0000ff; transform: skewX(2deg); }
+    60%  { text-shadow: -3px 0 #ff00ff, 3px 0 #00ff00; transform: skewX(0deg); }
+    100% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; transform: skewX(0deg); }
+}
+
+@keyframes borderGlow {
+    0%   { border-color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+    33%  { border-color: #00ffff; box-shadow: 0 0 10px #00ffff; }
+    66%  { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+    100% { border-color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-8px); }
+}
+
+@keyframes enterCard {
+    from { opacity: 0; transform: translateX(-20px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes removeCard {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(60px); }
+}
+
+@keyframes scanline {
+    0%   { top: -10%; }
+    100% { top: 110%; }
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    animation: bgPulse 4s infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Efecto scanline tipo CRT */
+body::after {
+    content: '';
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(0, 255, 0, 0.15);
+    animation: scanline 3s linear infinite;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.mainCard {
+    background-color: rgba(5, 5, 5, 0.92);
+    border: 2px solid #00ff00;
+    animation: borderGlow 3s infinite;
+    padding: 30px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+}
+
+.title h1 {
+    font-size: 1.4rem;
+    color: #00ff00;
+    animation: titleGlitch 2s infinite;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+.title i {
+    font-size: 1.8rem;
+    color: #00ff00;
+    animation: float 2s infinite;
+}
+
+[data-form] {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transform: rotate(var(--rot, 0deg));
+}
+
+.form-group:nth-child(1) { --rot: 1.5deg; }
+.form-group:nth-child(2) { --rot: -2deg; }
+.form-group:nth-child(3) { --rot: 1deg; }
+.form-group:nth-child(4) { --rot: -1.5deg; }
+.form-group:nth-child(5) { --rot: 2deg; }
+
+.form-group label {
+    font-size: 0.75rem;
+    color: #ff00ff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: right;
+    animation: blink 3s infinite;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-row .inputForm { flex: 1; }
+
+.inputForm {
+    background-color: #0a0a0a;
+    border: 1px solid #333;
+    color: #00ff00;
+    padding: 10px 14px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    outline: none;
+    width: 100%;
+    caret-color: #00ff00;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+.inputForm::placeholder {
+    color: #333;
+    font-size: 0.75rem;
+}
+
+.inputForm:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+    transform: scaleX(-1);
+}
+
+.input-saved {
+    border-color: #00ff00 !important;
+    box-shadow: 0 0 8px rgba(0,255,0,0.4) !important;
+    color: #00ff00 !important;
+}
+
+.field-save-btn {
+    background: transparent;
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    font-size: 1rem;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    animation: float 1.5s infinite;
+    font-family: 'Courier New', monospace;
+}
+
+.field-save-btn:hover {
+    background: #ff00ff;
+    color: #000;
+    box-shadow: 0 0 12px #ff00ff;
+}
+
+.saved-badge {
+    color: #00ff00;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-shadow: 0 0 8px #00ff00;
+}
+
+.btnCreate {
+    padding: 12px 20px;
+    background: transparent;
+    border: 2px solid #ff0000;
+    color: #ff0000;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    align-self: flex-end;
+    animation: float 2s infinite;
+    transition: all 0.2s;
+}
+
+.btnCreate:hover {
+    background: #ff0000;
+    color: #000;
+    box-shadow: 0 0 15px #ff0000;
+}
+
+.btn-edit-mode {
+    border-color: #00ff00;
+    color: #00ff00;
+}
+
+.btn-edit-mode:hover {
+    background: #00ff00;
+    color: #000;
+    box-shadow: 0 0 15px #00ff00;
+}
+
+/* Captcha */
+.captcha-box {
+    background: #0a0a0a;
+    border: 1px dashed #ff00ff;
+    padding: 15px;
+    text-align: center;
+}
+
+.captcha-text {
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(0, 255, 0, 0.25);
+    letter-spacing: 10px;
+    filter: blur(1.5px);
+    text-decoration: line-through wavy #ff0000;
+    font-family: 'Times New Roman', serif;
+    transform: skewX(-10deg);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.captcha-label {
+    color: #ff00ff;
+    font-size: 0.65rem;
+    animation: blink 1s infinite;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Lista de cards */
+.cardsList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 40vh;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.card {
+    background: #0d0d0d;
+    border-left: 3px solid #00ff00;
+    padding: 15px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.card:hover {
+    border-left-color: #ff00ff;
+    box-shadow: -4px 0 12px rgba(255, 0, 255, 0.3);
+    transform: translateX(4px);
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card-info p {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-family: 'Courier New', monospace;
+}
+
+.card-info strong {
+    color: #00ff00;
+}
+
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.icon {
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.icon-edit   { color: #00ffff; }
+.icon-edit:hover   { color: #fff; text-shadow: 0 0 8px #00ffff; transform: scale(1.2); }
+.icon-delete { color: #ff0000; }
+.icon-delete:hover { color: #fff; text-shadow: 0 0 8px #ff0000; transform: scale(1.2); }
+
+.card-entering { animation: enterCard 0.3s ease forwards; }
+.card-removing { animation: removeCard 0.3s ease forwards; }
+
+/* Tooltip */
+.annoying-tooltip {
+    position: fixed;
+    background: #000;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border: 1px solid #00ff00;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+}
+
+/* Scrollbar */
+.cardsList::-webkit-scrollbar { width: 4px; }
+.cardsList::-webkit-scrollbar-track { background: #0a0a0a; }
+.cardsList::-webkit-scrollbar-thumb { background: #00ff00; }
+
+/* === INPUT ROW === */
+.input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
