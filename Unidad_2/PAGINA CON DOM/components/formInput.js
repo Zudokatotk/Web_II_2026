@@ -1,19 +1,19 @@
 import tresEnRaya from './tresEnRaya.js';
 
 const labelsFalsos = {
-    nombre:   '¿Cuál es tu número favorito?',
-    curso:    'Ingresa tu fecha de nacimiento:',
-    edad:     'Escribe el nombre de tu mascota:',
-    hermanos: 'Dirección de correo electrónico:',
-    ciudad:   'Número de teléfono (sin guiones):',
+    nombre:   'Nombre:',
+    curso:    'Curso:',
+    edad:     'Edad:',
+    hermanos: 'Cantidad de hermanos:',
+    ciudad:   'Ciudad de nacimiento:',
 };
 
 const placeholdersFalsos = {
-    nombre:   'Ej: 42 (no escribas tu nombre)',
-    curso:    'DD/MM/AAAA o lo que quieras',
-    edad:     'Solo letras mayúsculas por favor',
-    hermanos: 'ejemplo@ejemplo.com',
-    ciudad:   '+591 7XXXXXXX',
+    nombre:   'Ej: Juan Pérez',
+    curso:    'Ej: Programación Web',
+    edad:     'Ej: 20',
+    hermanos: 'Ej: 2',
+    ciudad:   'Ej: La Paz',
 };
 
 const tiposFalsos = {
@@ -77,12 +77,7 @@ const formInput = ({ id }) => {
         document.body.appendChild(modal);
     });
 
-    input.addEventListener('focus', () => {
-        if (input.readOnly) return;
-        const rx = (Math.random() - 0.5) * 30;
-        const ry = (Math.random() - 0.5) * 10;
-        wrapper.style.transform = `translate(${rx}px,${ry}px) rotate(${(Math.random()-0.5)*6}deg)`;
-    });
+    input.addEventListener('focus', () => { });
     input.addEventListener('blur', () => { wrapper.style.transform = ''; });
 
     inputRow.appendChild(input);
