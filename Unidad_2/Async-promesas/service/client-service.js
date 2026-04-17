@@ -27,11 +27,11 @@
 
   fila.innerHTML = contenido;
   return fila;
-};*/
+};
 
-const table = document.querySelector("[data-table]");
+const table = document.querySelector("[data-table]");*/
 
-const listar_clientes = () => {
+/*const listar_clientes = () => {
   const promesa = new Promise((resolve, reject) => {
     const http = new XMLHttpRequest(); //variable para resquest con http
     http.open("GET", "http://localhost:3001/perfil"); //abrir la conexion con el metodo get y la url del json server
@@ -46,21 +46,20 @@ const listar_clientes = () => {
     };
   });
   return promesa;
-};
+};*/
 
-listar_clientes()
+/*listar_clientes()
   .then((data) => {
     data.forEach((perfil) => {
       const nuevaFila = crearFila(perfil.nombre, perfil.email);
       table.appendChild(nuevaFila);
     });
   })
-  .catch((error) => alert("Sin conexion"));
+  .catch((error) => alert("Sin conexion"));*/
 
 ///--------optimizado-----///
-/*
-listar_clientes = () =>
-  fetch("http://localhost:3000/perfil").then((respuesta) => respuesta.json());*/
+const listar_clientes = () =>
+  fetch("http://localhost:3001/perfil").then((respuesta) => respuesta.json());
 
 const crearcliente = (nombre, email) => {
   return fetch("http://localhost:3001/perfil", {
@@ -91,7 +90,9 @@ const eliminarCliente=(id)=>{
 };
 //REFERENCIA A ID
 const cliente=(id)=>{
-    return fetch(`http://localhost:3001/perfil/${id}`).then((respuesta)=>respuesta.json);
+    return fetch(`http://localhost:3001/perfil/${id}`)
+    .then((respuesta)=>respuesta.json())
+    .catch((err)=>console.log('error aqui', err));
 };
 
 export const clientService={

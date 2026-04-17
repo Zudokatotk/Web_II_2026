@@ -1,9 +1,55 @@
 {
   "perfil": [
     {
-      "nombre": "FULANITO",
-      "email": "fulanito@univalle.com",
-      "id": 1
+      "nombre": "Grover",
+      "email": "juavesto@gmail.com",
+      "id": "awqh3U-piDE"
+    },
+    {
+      "nombre": "Edwin",
+      "email": "edwin@gmail.com",
+      "id": "HM1qtKk0d-A"
     }
-  ]
+  ],
+  "productos": [
+    {
+      "id": "1",
+      "nombre": "Cajetilla de Cigarrillos",
+      "precio": 18,
+      "description": "Cigarrillos bohem sabor mango"
+    },
+    {
+      "nombre": "Cajetilla Cigarrillo",
+      "precio": "18",
+      "description": "Cigarros bohem sabor Sandia",
+      "id": "GgTFx5V0ATE"
+    }
+  ],
+  "pets": [
+    {
+      "id": "1",
+      "nombre": "Max",
+      "edad": 3,
+      "peso": 25.5,
+      "raza": "Labrador",
+      "id_dueno": "awqh3U-piDE"
+    },
+    {
+      "nombre": "Rex",
+      "edad": "4",
+      "peso": "24",
+      "raza": "Pastor aleman",
+      "id_dueno": "awqh3U-piDE",
+      "id": "uqCYuXamyoQ"
+    },
+    {
+      "nombre": "Alver",
+      "edad": "3",
+      "peso": "12",
+      "raza": "Golden Retriever",
+      "id_dueno": "HM1qtKk0d-A",
+      "id": "0OZtooNX-Kw"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

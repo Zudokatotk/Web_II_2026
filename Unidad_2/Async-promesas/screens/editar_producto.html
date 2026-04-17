@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doguito Petshop | Registro de producto</title>
+    <title>Doguito Petshop | Editar producto</title>
     <link rel="icon" href="../assets/img/doguitoadm.svg" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
@@ -41,7 +41,7 @@
     </header>
     <main class="container flex flex--center flex--column">
       <section class="card cadastro">
-        <h1 class="card__title">Registrar un producto</h1>
+        <h1 class="card__title">Editar producto</h1>
         <form action="#" class="flex flex--column" data-form>
           <div class="input-container">
             <input
@@ -50,10 +50,11 @@
               class="input"
               type="text"
               placeholder="nombre"
+              required
               data-nombre
             />
-            <label class="input-label" for="nombre">nombre</label>
-            <span class="input-menssage-error">Error</span>
+            <label class="input-label" for="nombre">Nombre</label>
+            <span class="input-menssage-error">Este campo es requerido</span>
           </div>
           <div class="input-container register__price-container">
             <input
@@ -62,10 +63,11 @@
               class="input"
               type="text"
               placeholder="Precio"
+              required
               data-precio
             />
             <label class="input-label" for="precio">Precio</label>
-            <span class="input-menssage-error">Error</span>
+            <span class="input-menssage-error">Este campo es requerido</span>
           </div>
           <div
             class="
@@ -83,11 +85,10 @@
             <label class="textarea-label" for="description">Descripcion</label>
             <span class="textarea-menssage-error">Error</span>
           </div>
-          <button type="submit" class="button">Registrar producto</button>
+          <button type="submit" class="button">Editar producto</button>
         </form>
       </section>
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="../controllers/registro_producto_controller.js" type="module"></script>
+    <script src="../controllers/editar_producto_controller.js" type="module"></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 import { clientService } from "../service/client-service.js";
-const crearFila = (nombre, email) => {
+const crearFila = (nombre, email, id) => {
   const fila = document.createElement("tr");
 
   const contenido = `
@@ -31,9 +31,10 @@ const crearFila = (nombre, email) => {
   btn.addEventListener("click",()=>{
     const id=btn.id
     clientService.eliminarCliente(id)
-    .then(respuesta=>alert("eliminado")
-    .window.location.reload()
-  ).catch(error=>alert("error"))
+    .then(()=>{
+        alert("eliminado");
+        window.location.reload();
+    }).catch(error=>alert("error"))
   })
   
   return fila;
@@ -43,7 +44,7 @@ const table = document.querySelector("[data-table]");
 clientService
 .listar_clientes()
     .then((data)=>{
-        data.forEach(({nombre, email}) => {
+        data.forEach(({nombre, email, id}) => {
             const nuevaFila=crearFila(nombre,email,id)
             table.appendChild(nuevaFila)
         });

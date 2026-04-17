@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Doguito Petshop | Clientes</title>
+    <title>Doguito Petshop | Pets</title>
     <link rel="icon" href="../assets/img/doguitoadm.svg" type="image/x-icon" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
@@ -32,7 +32,7 @@
           <li class="header__link"><a href="#">Dashboard</a></li>
           <li class="header__link"><a href="./lista_producto.html">Productos</a></li>
           <li class="header__link"><a href="./lista_cliente.html">Clientes</a></li>
-          <li class="header__link"><a href="./lista_pet.html">Pets</a></li>
+          <li class="header__link"><a href="#">Pets</a></li>
         </ul>
       </nav>
     </header>
@@ -42,12 +42,15 @@
         <thead>
           <tr>
             <th class="table__column--p">Nombre</th>
-            <th class="table__column--g">Email</th>
+            <th class="table__column--p">Edad</th>
+            <th class="table__column--p">Peso</th>
+            <th class="table__column--p">Raza</th>
+            <th class="table__column--p">ID Dueño</th>
             <th class="table__column--m table__align--right">
               <a
-                href="./registrar_cliente.html"
+                href="./registrar_pet.html"
                 class="simple-button simple-button--add"
-                >Nuevo Cliente</a
+                >Nuevo Pet</a
               >
             </th>
           </tr>
@@ -68,8 +71,6 @@
         </article>
       </div>
     </main>
-    <script src="../controllers/client_controller.js" type="module"></script>
+    <script src="../controllers/pet_controller.js" type="module"></script>
   </body>
 </html>
-
-<!-- AJAX Asyncronous JavaScript and XML-->
