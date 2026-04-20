@@ -57,7 +57,8 @@ const table = document.querySelector("[data-table]");*/
   })
   .catch((error) => alert("Sin conexion"));*/
 
-///--------optimizado-----///
+///--------optimizado-----///    
+/* comentado
 const listar_clientes = () =>
   fetch("http://localhost:3001/perfil").then((respuesta) => respuesta.json());
 
@@ -94,7 +95,53 @@ const cliente=(id)=>{
     .then((respuesta)=>respuesta.json())
     .catch((err)=>console.log('error aqui', err));
 };
+*/
+//-----con mysql -----//
+/*
+const API_BASE_URL='http://127.0.0.1/API/conexion.php'
+const listar_clientes=()=>{
+  return fetch(API_BASE_URL).then(response=>{
+    if(!response.ok)throw new Error('error clientes');
+      return response.json();
+    });
+  };
+const crearcliente = (nombre, email) => {
+  return fetch(API_BASE_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ nombre, email, id: uuid.v4() }),
+  }).then(response=>{
+    if(!response.ok)throw new Error('error clientes');
+    return response.json();
+  });
+};
+const eliminarCliente=(id)=>{
+  return fetch(`${API_BASE_URL}?id=${id}`,{
+    method:"DELETE"
+  })
 
+  //.then((respuesta)=>respuesta.json())
+}
+const ActualizarCliente=(nombre,email,id)=>{
+  return fetch(API_BASE_URL, {
+    method:"PUT",
+    headers:{
+      "content-Type":"application/json"
+    },
+    body:JSON.stringify({nombre,email,id})
+  }).then(respuesta=>console.log(respuesta)).catch((err)=>console.log(err));
+};
+const cliente=(id)=>{
+  return fetch(`${API_BASE_URL}?id=${id}`).then((respuesta)=>respuesta.json());
+}*/
+
+//-----CON SUPABASE-----//
+const URL_SUPABASE='https://atvjsavtpjzsqgjcefbs.supabase.co';
+const SUPABASE_KEY='sb_publishable__S0l2jhOsbM3LfJZNVYa7g_NGfsYLOX';
+const table='clientes';
+const API_URL=`${URL_SUPABASE}/rest/v1/${table}`
 export const clientService={
     listar_clientes,
     crearcliente,
