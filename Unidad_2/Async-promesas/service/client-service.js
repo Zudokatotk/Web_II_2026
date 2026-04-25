@@ -98,7 +98,7 @@ const cliente=(id)=>{
 */
 //-----con mysql -----//
 /*
-const API_BASE_URL='http://127.0.0.1/API/conexion.php'
+const API_BASE_URL='http://127.0.0.1/mypetshop/api/conexion.php?tabla=clientes'
 const listar_clientes=()=>{
   return fetch(API_BASE_URL).then(response=>{
     if(!response.ok)throw new Error('error clientes');
@@ -118,7 +118,7 @@ const crearcliente = (nombre, email) => {
   });
 };
 const eliminarCliente=(id)=>{
-  return fetch(`${API_BASE_URL}?id=${id}`,{
+  return fetch(`${API_BASE_URL}&id=${id}`,{
     method:"DELETE"
   })
 
@@ -134,14 +134,72 @@ const ActualizarCliente=(nombre,email,id)=>{
   }).then(respuesta=>console.log(respuesta)).catch((err)=>console.log(err));
 };
 const cliente=(id)=>{
-  return fetch(`${API_BASE_URL}?id=${id}`).then((respuesta)=>respuesta.json());
-}*/
+  return fetch(`${API_BASE_URL}&id=${id}`).then((respuesta)=>respuesta.json());
+}
+*/
 
 //-----CON SUPABASE-----//
-const URL_SUPABASE='https://atvjsavtpjzsqgjcefbs.supabase.co';
-const SUPABASE_KEY='sb_publishable__S0l2jhOsbM3LfJZNVYa7g_NGfsYLOX';
-const table='clientes';
-const API_URL=`${URL_SUPABASE}/rest/v1/${table}`
+
+const URL_SUPABASE = 'https://atvjsavtpjzsqgjcefbs.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0dmpzYXZ0cGp6c3FnamNlZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjUwMzgsImV4cCI6MjA5MjI0MTAzOH0.ySZbk862cqiOEc40AUlwYvPcGq3Zv6u_kW6p2YFPgVQ';
+const table = 'clientes';
+const API_URL = `${URL_SUPABASE}/rest/v1/${table}`;
+
+const HEADERS = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': `Bearer ${SUPABASE_KEY}`,
+    'Content-Type': 'application/json',
+    'Prefer': 'return=representation'
+};
+
+const request = async (url, option = {}) => {
+    const res = await fetch(url, { headers: HEADERS, ...option });
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : null;
+    if (!res.ok) {
+        const mensaje = data?.message ?? data?.error ?? text ?? 'Error';
+        throw new Error(mensaje);
+    }
+    return data;
+};
+
+// GET - listar todos los clientes
+const listar_clientes = () => {
+    return request(`${API_URL}?select=id,nombre,email`);
+};
+
+// GET por id - obtener un cliente específico
+const cliente = (id) => {
+    return request(`${API_URL}?id=eq.${id}&select=id,nombre,email`)
+        .then(data => data[0]);
+};
+
+// POST - crear nuevo cliente
+const crearcliente = (nombre, email) => {
+    return request(API_URL, {
+        method: 'POST',
+        body: JSON.stringify({ nombre, email, id: uuid.v4() })
+    }).then(data => {
+        console.log("Respuesta de Supabase:", data);
+        return data?.[0] || { nombre, email };
+    });
+};
+
+// PATCH - actualizar cliente
+const ActualizarCliente = (nombre, email, id) => {
+    return request(`${API_URL}?id=eq.${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ nombre, email })
+    }).then(data => data?.[0] ?? Promise.reject(new Error('no se pudo actualizar')));
+};
+
+// DELETE - eliminar cliente
+const eliminarCliente = (id) => {
+    return request(`${API_URL}?id=eq.${id}`, {
+        method: 'DELETE'
+    }).then(data => data?.[0] ?? Promise.reject(new Error('no se pudo eliminar')));
+};
+
 export const clientService={
     listar_clientes,
     crearcliente,
