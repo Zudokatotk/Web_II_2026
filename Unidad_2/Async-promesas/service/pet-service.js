@@ -80,8 +80,63 @@ const obtenerPet=(id)=>{
 }
 */
 
-//-----CON SUPABASE-----//
+//-----CON EXPRESS + MYSQL (XAMPP)-----//
 
+const API_BASE_URL = 'http://localhost:3000/api/pets';
+
+const listar_pets = () => {
+  return fetch(API_BASE_URL)
+    .then(response => {
+      if (!response.ok) throw new Error('Error al listar pets');
+      return response.json();
+    });
+};
+
+const crearPet = (nombre, edad, peso, raza, id_dueno) => {
+  return fetch(API_BASE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nombre, edad, peso, raza, id_dueno, id: uuid.v4() }),
+  }).then(response => {
+    if (!response.ok) throw new Error('Error al crear pet');
+    return response.json();
+  });
+};
+
+const eliminarPet = (id) => {
+  return fetch(`${API_BASE_URL}?id=${id}`, {
+    method: "DELETE"
+  }).then(response => {
+    if (!response.ok) throw new Error('Error al eliminar pet');
+    return response.json();
+  });
+};
+
+const ActualizarPet = (nombre, edad, peso, raza, id_dueno, id) => {
+  return fetch(API_BASE_URL, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ nombre, edad, peso, raza, id_dueno, id })
+  }).then(response => {
+    if (!response.ok) throw new Error('Error al actualizar pet');
+    return response.json();
+  });
+};
+
+const obtenerPet = (id) => {
+  return fetch(`${API_BASE_URL}?id=${id}`)
+    .then(response => {
+      if (!response.ok) throw new Error('Error al obtener pet');
+      return response.json();
+    });
+};
+
+//-----CON SUPABASE (comentado)-----//
+/*
 const URL_SUPABASE = 'https://atvjsavtpjzsqgjcefbs.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0dmpzYXZ0cGp6c3FnamNlZmJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY2NjUwMzgsImV4cCI6MjA5MjI0MTAzOH0.ySZbk862cqiOEc40AUlwYvPcGq3Zv6u_kW6p2YFPgVQ';
 const table = 'pets';
@@ -141,6 +196,7 @@ const eliminarPet = (id) => {
         method: 'DELETE'
     }).then(data => data?.[0] ?? Promise.reject(new Error('no se pudo eliminar')));
 };
+*/
 
 export const petService = {
   listar_pets,
