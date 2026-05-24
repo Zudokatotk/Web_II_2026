@@ -1,34 +1,38 @@
 import { clientService } from "../service/client-service.js";
-const formulario=document.querySelector("[data-form]");
-const obInfo = async()=>{
+
+const formulario = document.querySelector("[data-form]");
+
+const obInfo = async () => {
     const url = new URL(window.location);
-    const id = (yrl.searchParams.get("id"))
-    if(id==null){
-        window.location.href="/screens/errors.html"
+    const id = url.searchParams.get("id"); // fix: era "yrl" (typo)
+    if (id == null) {
+        window.location.href = "../screens/error.html";
     }
-    const nombre = document.querySelector("[data-nombre]")
-    const email = document.querySelector("[data-email]")
-    try{
-        const perfil = await clientService.cliente(id);
-        if(perfil.nombre && perfil.email){
+    const nombre = document.querySelector("[data-nombre]");
+    const email = document.querySelector("[data-email]");
+    try {
+        const perfil = await clientService.cliente(id); // await espera el id del cliente
+        if (perfil.nombre && perfil.email) {
             nombre.value = perfil.nombre;
             email.value = perfil.email;
-        }else{
+        } else {
             throw new Error();
         }
-    }catch(error){
-        window.location.href="../screens/errors.html"
+    } catch (error) {
+        console.log("Catch error", error);
+        window.location.href = "../screens/error.html";
     }
 };
-obinfo();
 
-formulario.addEventListener("submit",(evento)=>{
+obInfo(); // fix: era "obinfo()" (typo, JS es case-sensitive)
+
+formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
     const url = new URL(window.location);
-    const id=url.searchParams.get(id);
-    const nombre=url.searchParams.get("[data-nombre]").value;
-    const email=url.searchParams.get("[data-email]").value;
-    clientService.ActualizarCliente(nombre,email,id).then(()=>{
-        window.location.href="/screens/edicion_concluida.html"
-    })
-})
+    const id = url.searchParams.get("id"); // fix: era get(id) sin comillas
+    const nombre = document.querySelector("[data-nombre]").value; // fix: era url.searchParams.get(...)
+    const email = document.querySelector("[data-email]").value;
+    clientService.actualizarCliente(nombre, email, id).then(() => {
+        window.location.href = "../screens/edicion_concluida.html";
+    });
+});
