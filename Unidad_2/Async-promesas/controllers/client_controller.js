@@ -42,7 +42,7 @@ const crearFila = (nombre, email, id) => {
 
 const table = document.querySelector("[data-table]");
 clientService
-    .listaclientes() // fix: era listar_clientes() — el nombre correcto es listaclientes
+    .listar_clientes() // conectado a Supabase (última conexión activa en clase)
     .then((data) => {
         data.forEach(({ nombre, email, id }) => {
             const nuevaFila = crearFila(nombre, email, id);
